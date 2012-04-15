@@ -1,3 +1,4 @@
 name: Demo
 main: com.gmail.nmarshall23.demo.DemoPlugin
 version: 0.1
+depend: [libScala]
