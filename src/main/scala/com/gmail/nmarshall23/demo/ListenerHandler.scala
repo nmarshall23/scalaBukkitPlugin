@@ -12,9 +12,6 @@ import org.bukkit.Server
 import org.bukkit.ChatColor
 
 class ListenerHandler(plugin:DemoPlugin) extends Listener {
-
-  
-  
   
   @EventHandler 
   def getSignPlacement(event:PlayerInteractEvent) : Unit = event match {
@@ -23,7 +20,9 @@ class ListenerHandler(plugin:DemoPlugin) extends Listener {
   	case event if event.hasBlock() == false => Unit
   	case event if event.getAction() != Action.RIGHT_CLICK_BLOCK => Unit
   	case event if event.getClickedBlock().getType() != Material.WALL_SIGN => Unit
-  	case event => signPlacement(event.getClickedBlock())
+  	case event => 
+  	  event.setCancelled(true)
+  	  signPlacement(event.getClickedBlock())
   	
   }
   
@@ -34,6 +33,7 @@ class ListenerHandler(plugin:DemoPlugin) extends Listener {
     
     val line = ChatColor.DARK_RED + sign.getLine(0)
     sign.setLine(0,line)
+    
     
     
     
